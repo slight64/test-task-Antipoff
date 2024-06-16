@@ -1,0 +1,29 @@
+:root {
+  --font-size-error: 10px;
+  --font-size-s: 14px;
+  --font-size-m: 16px;
+  --font-size-h2: 20px;
+  --font-size-h1: 64px;
+
+  --font-weight: 400;
+
+  --box-radius: 8px;
+
+  --color-black: #151317;
+  --color-violet: #512689;
+  --color-gray: #808185;
+  --color-light-gray: #f8f8f8;
+  --color-red: #ff6161;
+  --color-white: #ffffff;
+}
+
+html,
+body,
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--font-size-m);
+  color: #151317;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
