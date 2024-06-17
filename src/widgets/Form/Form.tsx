@@ -1,9 +1,9 @@
-import { useState } from "react";
-import "./Form.css";
+import { SyntheticEvent, useState } from 'react';
+import './Form.css';
 
 interface FormProps {
   title: string;
-  buttonName: "Войти" | "Зарегистрироваться";
+  buttonName: 'Войти' | 'Зарегистрироваться';
 }
 
 interface StateItems {
@@ -15,17 +15,17 @@ interface StateItems {
 
 const Form = ({ title, buttonName }: FormProps) => {
   const [values, setValues] = useState<StateItems>({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [error, setError] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const onInpuChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,44 +38,42 @@ const Form = ({ title, buttonName }: FormProps) => {
   };
 
   const validateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = e.target;
-    console.log(name, value);
+    const { name, value } = e.target;
     setError((prev) => {
-      const stateObject = { ...prev, [name]: "" };
+      const stateObject = { ...prev, [name]: '' };
 
       switch (name) {
-        case "username":
-          console.log("name, value");
+        case 'username':
           if (!value) {
-            stateObject[name] = "Введите имя";
+            stateObject[name] = 'Введите имя';
           }
           break;
-        case "email":
+        case 'email':
           if (!value) {
-            stateObject[name] = "Введите почту";
+            stateObject[name] = 'Введите почту';
           }
           break;
 
-        case "password":
+        case 'password':
           if (!value) {
-            stateObject[name] = "Введите пароль";
+            stateObject[name] = 'Введите пароль';
           } else if (
             values.confirmPassword &&
             value !== values.confirmPassword
           ) {
-            stateObject["confirmPassword"] = "Пароли не совпадают";
+            stateObject['confirmPassword'] = 'Пароли не совпадают';
           } else {
-            stateObject["confirmPassword"] = values.confirmPassword
-              ? ""
+            stateObject['confirmPassword'] = values.confirmPassword
+              ? ''
               : error.confirmPassword;
           }
           break;
 
-        case "confirmPassword":
+        case 'confirmPassword':
           if (!value) {
-            stateObject[name] = "Повторите пароль";
+            stateObject[name] = 'Повторите пароль';
           } else if (values.password && value !== values.password) {
-            stateObject[name] = "Пароли не совпадают";
+            stateObject[name] = 'Пароли не совпадают';
           }
           break;
 
@@ -87,19 +85,23 @@ const Form = ({ title, buttonName }: FormProps) => {
     });
   };
 
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <form className="form">
       <h2 className="form__title">{title}</h2>
       <div className="form__item">
         <label className="form__item-title" htmlFor="name">
-          {"Имя"}
+          {'Имя'}
         </label>
         <input
           value={values.username}
           name="username"
           id="name"
           className={`form__item-input ${
-            error.username && "form__item-input__error-border"
+            error.username && 'form__item-input__error-border'
           }`}
           type="text"
           required
@@ -107,19 +109,19 @@ const Form = ({ title, buttonName }: FormProps) => {
           onBlur={validateInput}
         />
         {error.username && (
-          <div className="form__item-input__error-text">Ошибка</div>
+          <div className="form__item-input__error-text">{error.username}</div>
         )}
       </div>
       <div className="form__item">
         <label className="form__item-title" htmlFor="email">
-          {"Электронная почта"}
+          {'Электронная почта'}
         </label>
         <input
           value={values.email}
           name="email"
           id="email"
           className={`form__item-input ${
-            error.email && "form__item-input__error-border"
+            error.email && 'form__item-input__error-border'
           }`}
           type="text"
           required
@@ -132,14 +134,14 @@ const Form = ({ title, buttonName }: FormProps) => {
       </div>
       <div className="form__item">
         <label className="form__item-title" htmlFor="password">
-          {"Пароль"}
+          {'Пароль'}
         </label>
         <input
           value={values.password}
           name="password"
           id="password"
           className={`form__item-input ${
-            error.password && "form__item-input__error-border"
+            error.password && 'form__item-input__error-border'
           }`}
           type="text"
           required
@@ -152,14 +154,14 @@ const Form = ({ title, buttonName }: FormProps) => {
       </div>
       <div className="form__item">
         <label className="form__item-title" htmlFor="confirmPassword">
-          {"Повторите пароль"}
+          {'Повторите пароль'}
         </label>
         <input
           value={values.confirmPassword}
           name="confirmPassword"
           id="confirmPassword"
           className={`form__item-input ${
-            error.confirmPassword && "form__item-input__error-border"
+            error.confirmPassword && 'form__item-input__error-border'
           }`}
           type="text"
           required
@@ -172,7 +174,7 @@ const Form = ({ title, buttonName }: FormProps) => {
           </div>
         )}
       </div>
-      <button className="form__item-submit" onClick={() => {}}>
+      <button className="form__item-submit" onClick={handleSubmit}>
         {buttonName}
       </button>
     </form>
