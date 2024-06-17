@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Field } from "../../../features/auth/types/AuthTypes";
-
 import "./Form.css";
 
 interface FormProps {
