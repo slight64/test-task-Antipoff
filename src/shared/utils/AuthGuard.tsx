@@ -1,19 +1,29 @@
 import { ReactNode, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { StateSchema } from '../../app/providers/StoreProvider/config/StateSchema';
+import { userActions } from '../../entities/User';
 
 interface AuthGuardProps {
   children: ReactNode;
-  user: boolean;
 }
 
-const AuthGuard = ({ children, user }: AuthGuardProps) => {
+const AuthGuard = ({ children }: AuthGuardProps) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector(
+    (state: StateSchema) => state?.user?.userData?.token
+  );
+  dispatch(userActions.getAuthDataFromLocalstorage());
 
   useEffect(() => {
-    if (!user) {
+    if (!token) {
       navigate('/login');
     }
-  }, [user, navigate]);
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
 
   return <>{children}</>;
 };

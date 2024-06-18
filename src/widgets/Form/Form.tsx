@@ -4,6 +4,7 @@ import './Form.css';
 interface FormProps {
   title: string;
   buttonName: 'Войти' | 'Зарегистрироваться';
+  onSubmitForm: (arg1: string, arg2: string) => void;
 }
 
 interface StateItems {
@@ -13,7 +14,7 @@ interface StateItems {
   confirmPassword: string;
 }
 
-const Form = ({ title, buttonName }: FormProps) => {
+const Form = ({ title, buttonName, onSubmitForm }: FormProps) => {
   const [values, setValues] = useState<StateItems>({
     username: '',
     email: '',
@@ -52,6 +53,9 @@ const Form = ({ title, buttonName }: FormProps) => {
           if (!value) {
             stateObject[name] = 'Введите почту';
           }
+          if (!value.includes('@')) {
+            stateObject[name] = 'Введите почту в праильном формате';
+          }
           break;
 
         case 'password':
@@ -87,6 +91,17 @@ const Form = ({ title, buttonName }: FormProps) => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    for (const [, value] of Object.entries(error)) {
+      if (value !== '') {
+        return null;
+      }
+    }
+    for (const [, value] of Object.entries(values)) {
+      if (value === '') {
+        return null;
+      }
+    }
+    onSubmitForm(values.email, values.password);
   };
 
   return (

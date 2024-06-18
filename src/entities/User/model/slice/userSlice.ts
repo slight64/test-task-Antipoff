@@ -9,16 +9,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
-      state.authData = action.payload;
+      state.userData = action.payload;
     },
     getAuthDataFromLocalstorage: (state) => {
-      const user = localStorage.getItem(USER_AUTH_LOCALSTORAGE);
-      if (user) {
-        state.authData = JSON.parse(user);
+      const token = localStorage.getItem(USER_AUTH_LOCALSTORAGE);
+
+      if (token) {
+        state.userData = JSON.parse(token);
       }
     },
     logout: (state) => {
-      state.authData = undefined;
+      state.userData = undefined;
       localStorage.removeItem(USER_AUTH_LOCALSTORAGE);
     },
   },

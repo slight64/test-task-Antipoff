@@ -1,6 +1,6 @@
 import { AnyAction, createSlice } from '@reduxjs/toolkit';
 import { AuthSchema } from '../types/authSchema';
-import { registrationAndLogin } from '../services/registrationService';
+import { registrationAndLogin } from '../services/getUsersListService';
 
 const initialState: AuthSchema = {
   isLoading: false,

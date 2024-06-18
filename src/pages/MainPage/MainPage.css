@@ -1,0 +1,55 @@
+main {
+}
+
+.main__header {
+  background-color: #512689;
+}
+
+.main__header-wrapper {
+  padding: 75px 300px;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.main__header-title {
+  color: inherit;
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+}
+
+.main__header__text {
+  color: inherit;
+  font-size: var(--font-size-h2);
+  max-width: 900px;
+}
+
+.main__users-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.main__user-card {
+  border-radius: 10px;
+  max-width: 305px;
+  max-height: 263px;
+  box-shadow: 0 1px 4px 0 var(--color-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__avatar {
+  border-radius: 50%;
+  object-fit: none;
+}
+
+.main__card-favorite {
+  align-self: flex-end;
+}
