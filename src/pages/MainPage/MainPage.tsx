@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUsersListData } from '../../features/getUsersList/model/services/getUsersListService';
-import { StateSchema } from '../../app/providers/StoreProvider/config/StateSchema';
-import './MainPage.css';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getUsersListData } from "../../features/getUsersList/model/services/getUsersListService";
+import { StateSchema } from "../../app/providers/StoreProvider/config/StateSchema";
+import { useAppDispatch } from "../../shared/utils/hooks/reduxHooks";
+import UserCard from "../../widgets/UserCard/UserCard";
+import "./MainPage.css";
 
 const MainPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const data = useSelector((state: StateSchema) => state.usersList.usersList);
   useEffect(() => {
     dispatch(getUsersListData());
@@ -26,15 +28,12 @@ const MainPage = () => {
         {data &&
           data.map((item) => {
             return (
-              <div className="main__user-card">
-                <img
-                  className="main__avatar"
-                  src={item.avatar}
-                  alt={item.first_name}
-                />
-                <p className="main__user-name">{`${item.first_name} ${item.last_name}`}</p>
-                <button className="main__card-favorite">like</button>
-              </div>
+              <UserCard
+                key={item.id}
+                avatar={item.avatar}
+                firstName={item.first_name}
+                lastName={item.last_name}
+              />
             );
           })}
       </div>

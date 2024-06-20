@@ -1,0 +1,11 @@
+.favorite-btn {
+  line-height: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.favorite-btn__active > svg {
+  fill: var(--color-violet);
+}
