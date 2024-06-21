@@ -19,7 +19,6 @@ export const getUsersListData = createAsyncThunk(
         throw new Error();
       }
       thunkAPI.dispatch(usersListActions.setUsersList(response.data.data));
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue('Error: ' + e);

@@ -1,7 +1,5 @@
 import { ReactNode, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { userActions } from '../../../entities/User';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -10,32 +8,14 @@ interface AuthGuardProps {
 
 const AuthGuard = ({ children, token }: AuthGuardProps) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  // const location = useLocation();
-  // dispatch(userActions.getAuthDataFromLocalstorage());
   useEffect(() => {
     if (!token) {
-      console.log(token);
       navigate('/login');
     }
     if (token) {
-      console.log(token);
       navigate('/');
     }
   }, [token]);
-
-  // if (!token) {
-  //   console.log('1');
-  //   <Navigate to="login" />;
-  // }
-  // if (token && location.pathname === '/login') {
-  //   console.log('2');
-  //   navigate('/');
-  //   return;
-  // } else {
-  //   navigate(location.pathname);
-  //   return;
-  // }
 
   return children;
 };
