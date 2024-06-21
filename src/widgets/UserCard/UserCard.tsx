@@ -1,16 +1,21 @@
-import FavoriteBtn from "../../shared/ui/FavoriteBtn";
+import { Link } from 'react-router-dom';
+import FavoriteBtn from '../../shared/ui/FavoriteBtn/FavoriteBtn';
 
 interface UserCardProps {
+  id: number;
   avatar: string;
   firstName: string;
   lastName: string;
 }
 
-function UserCard({ avatar, firstName, lastName }: UserCardProps) {
+function UserCard({ id, avatar, firstName, lastName }: UserCardProps) {
   return (
     <div className="main__user-card">
       <img className="main__avatar" src={avatar} alt={firstName} />
-      <button className="main__user-name">{`${firstName} ${lastName}`}</button>
+      <Link
+        to={`/profile/${id}`}
+        className="main__user-name"
+      >{`${firstName} ${lastName}`}</Link>
       <div className="main__card-favorite">
         <FavoriteBtn />
       </div>

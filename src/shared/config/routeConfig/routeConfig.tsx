@@ -1,6 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import AuthPage from '../../../pages/AuthPage/AuthPage';
 import MainPage from '../../../pages/MainPage/MainPage';
+import ProfilePage from '../../../pages/ProfilePage/ProfilePage';
 
 export enum rootPaths {
   main = '/',
@@ -19,6 +20,6 @@ export const routeConfig: Record<rootPaths, RouteProps> = {
   },
   [rootPaths.profile]: {
     path: rootPaths.profile,
-    element: <AuthPage />,
+    element: <ProfilePage />,
   },
 };

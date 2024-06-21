@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { usersListActions } from '../../../../entities/UsersList/model/slice/usersListSlice';
 import { UsersList } from '../../../../entities/UsersList/model/types/userSchema';
 

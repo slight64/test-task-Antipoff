@@ -1,17 +1,20 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getUsersListData } from "../../features/getUsersList/model/services/getUsersListService";
-import { StateSchema } from "../../app/providers/StoreProvider/config/StateSchema";
-import { useAppDispatch } from "../../shared/utils/hooks/reduxHooks";
-import UserCard from "../../widgets/UserCard/UserCard";
-import "./MainPage.css";
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getUsersListData } from '../../features/getUsersList/model/services/getUsersListService';
+import { StateSchema } from '../../app/providers/StoreProvider/config/StateSchema';
+import { useAppDispatch } from '../../shared/utils/hooks/reduxHooks';
+import UserCard from '../../widgets/UserCard/UserCard';
+import Logout from '../../features/logout/Logout';
+import './MainPage.css';
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
   const data = useSelector((state: StateSchema) => state.usersList.usersList);
+
   useEffect(() => {
     dispatch(getUsersListData());
-  }, []);
+  }, [dispatch]);
+
   return (
     <div className="main">
       <div className="main__header">
@@ -22,6 +25,7 @@ const MainPage = () => {
             которые ложатся на их плечи, и умеющие находить выход из любых, даже
             самых сложных ситуаций.
           </p>
+          <Logout className="main__header-logout" />
         </div>
       </div>
       <div className="main__users-wrapper">
@@ -30,6 +34,7 @@ const MainPage = () => {
             return (
               <UserCard
                 key={item.id}
+                id={item.id}
                 avatar={item.avatar}
                 firstName={item.first_name}
                 lastName={item.last_name}

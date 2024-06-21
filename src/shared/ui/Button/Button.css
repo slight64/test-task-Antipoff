@@ -1,0 +1,17 @@
+.button {
+  outline: none;
+  border-radius: 8px;
+  background-color: transparent;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.button__white {
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+}
+
+.button__black {
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
+}

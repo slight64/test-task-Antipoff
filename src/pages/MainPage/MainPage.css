@@ -1,9 +1,19 @@
 .main__header {
   background-color: #512689;
+  display: flex;
+  justify-content: center;
+}
+
+.main__header-logout {
+  position: absolute;
+  right: 0;
+  top: 36px;
 }
 
 .main__header-wrapper {
-  padding: 75px 300px;
+  position: relative;
+  width: 1280px;
+  padding: 75px 0;
   color: var(--color-white);
   display: flex;
   flex-direction: column;

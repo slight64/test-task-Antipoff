@@ -1,4 +1,4 @@
-import { AnyAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { AuthSchema } from '../types/authSchema';
 import { registrationAndLogin } from '../services/getUsersListService';
 
@@ -13,17 +13,7 @@ const initialState: AuthSchema = {
 export const loginSlice = createSlice({
   name: 'registration',
   initialState,
-  reducers: {
-    // setUsername: (state, action: PayloadAction<string>) => {
-    //   state.username = action.payload;
-    // },
-    // setEmail: (state, action: PayloadAction<string>) => {
-    //   state.email = action.payload;
-    // },
-    // setPassword: (state, action: PayloadAction<string>) => {
-    //   state.password = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(registrationAndLogin.pending, (state) => {

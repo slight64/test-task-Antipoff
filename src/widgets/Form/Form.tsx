@@ -158,7 +158,7 @@ const Form = ({ title, buttonName, onSubmitForm }: FormProps) => {
           className={`form__item-input ${
             error.password && 'form__item-input__error-border'
           }`}
-          type="text"
+          type="password"
           required
           onChange={onInpuChange}
           onBlur={validateInput}
@@ -178,7 +178,7 @@ const Form = ({ title, buttonName, onSubmitForm }: FormProps) => {
           className={`form__item-input ${
             error.confirmPassword && 'form__item-input__error-border'
           }`}
-          type="text"
+          type="password"
           required
           onChange={onInpuChange}
           onBlur={validateInput}
