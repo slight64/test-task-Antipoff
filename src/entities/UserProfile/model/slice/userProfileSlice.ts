@@ -1,6 +1,5 @@
 import { UserProfile, UserProfileSchema } from './../types/UserProfileSchema';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getUserProfile } from '../userProfileService/getUserProfile';
 
 const initialState: UserProfileSchema = {
   userProfile: {
@@ -8,10 +7,10 @@ const initialState: UserProfileSchema = {
     email: '',
     first_name: '',
     id: undefined,
-    isLoading: false,
     last_name: '',
-    error: '',
   },
+
+  isLoading: false,
 };
 
 export const userProfileSlice = createSlice({
@@ -22,20 +21,19 @@ export const userProfileSlice = createSlice({
       state.userProfile = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getUserProfile.pending, (state) => {
-        state.userProfile.error = '';
-        state.userProfile.isLoading = true;
-      })
-      .addCase(getUserProfile.fulfilled, (state) => {
-        state.userProfile.isLoading = false;
-      })
-      .addCase(getUserProfile.rejected, (state, action) => {
-        state.userProfile.isLoading = false;
-        state.userProfile.error = action.payload;
-      });
-  },
+  // extraReducers: (builder) => {
+  //   builder;
+  //   // .addCase(getUserProfile.pending, (state) => {
+  //   //   state.error = '';
+  //   //   state.isLoading = true;
+  //   // })
+  //   // .addCase(getUserProfile.fulfilled, (state) => {
+  //   //   state.isLoading = false;
+  //   // })
+  //   // .addCase(getUserProfile.rejected, (state) => {
+  //   //   state.isLoading = false;
+  //   // });
+  // },
 });
 
 export const { actions: userProfileSliceActions } = userProfileSlice;

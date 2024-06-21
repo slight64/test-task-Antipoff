@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { UserData } from '../types/UserProfileSchema';
 import { userProfileSliceActions } from '../slice/userProfileSlice';
 
@@ -10,15 +10,18 @@ export const getUserProfile = createAsyncThunk(
       const response = await axios.get<UserData>(
         `https://reqres.in/api/users/${id}`
       );
-      if (!response.data) {
+      if (!response.data.data) {
         throw new Error();
       }
-      thunkAPI.dispatch(
-        userProfileSliceActions.setUserProfile(response.data.data)
-      );
-      return response.data;
+      if (response.data.data)
+        thunkAPI.dispatch(
+          userProfileSliceActions.setUserProfile(response.data.data)
+        );
+      return response.data.data;
     } catch (e) {
-      return thunkAPI.rejectWithValue('Error: ' + e);
+      if (e instanceof AxiosError) {
+        return thunkAPI.rejectWithValue('Error: ' + e);
+      }
     }
   }
 );

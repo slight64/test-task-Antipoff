@@ -4,14 +4,14 @@ export interface UserProfile {
   first_name: string;
   last_name: string;
   avatar: string;
-  isLoading: boolean;
-  error: string;
 }
 
 export interface UserProfileSchema {
-  userProfile: UserProfile;
+  userProfile?: UserProfile;
+  isLoading: boolean;
+  error?: string;
 }
 
 export interface UserData {
-  data: UserProfile;
+  data?: UserProfile;
 }

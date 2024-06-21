@@ -1,16 +1,15 @@
-import * as React from "react";
-import { useState } from "react";
-import "./FavoriteBtn.css";
+import { useState } from 'react';
+import './FavoriteBtn.css';
 
 const FavoriteBtn = () => {
   const [active, setActive] = useState(false);
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOnClick = () => {
     setActive((prev) => !prev);
   };
   return (
     <button
       onClick={handleOnClick}
-      className={`favorite-btn ${active && "favorite-btn__active"}`}
+      className={`favorite-btn ${active && 'favorite-btn__active'}`}
     >
       <svg
         width="16"

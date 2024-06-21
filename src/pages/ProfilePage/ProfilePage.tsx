@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../shared/utils/hooks/reduxHooks';
+import { RootState, useAppDispatch } from '../../shared/utils/hooks/reduxHooks';
 import { getUserProfile } from '../../entities/UserProfile/model/userProfileService/getUserProfile';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { StateSchema } from '../../app/providers/StoreProvider/config/StateSchema';
 import './ProfilePage.css';
-import { UserProfile } from '../../entities/UserProfile/model/types/UserProfileSchema';
 import MailIcon from '../../shared/ui/MailIcon/MailIcon';
 import Logout from '../../features/logout/Logout';
 import { Button } from '../../shared/ui';
@@ -21,11 +19,9 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    dispatch(getUserProfile(param.id));
+    dispatch(getUserProfile(Number(param.id)));
   }, [dispatch, param.id]);
-  const data: UserProfile = useSelector<StateSchema>(
-    (state) => state.userProfile.userProfile
-  );
+  const data = useSelector((state: RootState) => state.userProfile.userProfile);
 
   return (
     <div className="profile">

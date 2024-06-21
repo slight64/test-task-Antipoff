@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import './Form.css';
 
 interface FormProps {
@@ -89,7 +89,7 @@ const Form = ({ title, buttonName, onSubmitForm }: FormProps) => {
     });
   };
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: MouseEvent): void => {
     e.preventDefault();
     for (const [, value] of Object.entries(error)) {
       if (value !== '') {
