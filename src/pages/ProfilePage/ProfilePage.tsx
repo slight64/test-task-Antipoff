@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const param = useParams();
-
+  // const history =
   const onGoToPreviousPage = () => {
     navigate(-1);
   };

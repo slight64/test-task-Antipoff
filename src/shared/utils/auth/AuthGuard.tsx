@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -7,12 +7,16 @@ interface AuthGuardProps {
 }
 
 const AuthGuard = ({ children, token }: AuthGuardProps) => {
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
       navigate('/login');
     }
-    if (token) {
+    if (token && location.pathname !== '/login') {
+      navigate(location.pathname);
+    } else if (token && location.pathname === '/login') {
       navigate('/');
     }
   }, [token]);

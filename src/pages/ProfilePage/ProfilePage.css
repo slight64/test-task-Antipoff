@@ -21,7 +21,6 @@
   position: relative;
   align-self: flex-start;
   width: 1280px;
-  justify-self: baseline;
   padding: 75px 0;
   color: var(--color-white);
   display: flex;
@@ -68,7 +67,6 @@
   height: 187px;
   border-radius: 50%;
   object-fit: cover;
-  justify-self: baseline;
 }
 
 .profile__email {
@@ -79,4 +77,53 @@
 
 .profile__email > span {
   margin-left: 8px;
+}
+
+@media screen and (max-width: 1360px) {
+}
+@media screen and (max-width: 1080px) {
+}
+@media screen and (max-width: 680px) {
+  .profile__header-wrapper {
+    align-self: flex-start;
+    max-width: 640px;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile__header-title {
+    font-size: var(--font-size-l);
+  }
+
+  .profile__header__text {
+    font-size: var(--font-size-m);
+    max-width: 640px;
+    text-align: center;
+  }
+
+  .profile__avatar {
+    width: 187px;
+    height: 187px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile__header-text-wrapper {
+    margin-bottom: 16px;
+    margin-left: 0;
+  }
+
+  .profile__main-info-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    max-width: 640px;
+    padding: 20px;
+    margin: 0;
+  }
+
+  .profile__contacts {
+    margin-bottom: 24px;
+  }
 }

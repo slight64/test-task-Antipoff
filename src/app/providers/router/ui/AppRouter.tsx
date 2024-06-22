@@ -11,6 +11,7 @@ import {
 
 export const AppRouter = () => {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(userActions.getAuthDataFromLocalstorage());
   }, [dispatch]);
@@ -24,7 +25,7 @@ export const AppRouter = () => {
             path={path}
             element={
               <AuthGuard token={token}>
-                <div className="page-wrapper">{element}</div>{' '}
+                <div className="page-wrapper">{element}</div>
               </AuthGuard>
             }
           />
